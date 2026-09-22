@@ -15,6 +15,10 @@ SELECT * FROM tb_logs;
 /* Verifica los usuarios remotos creados en el servidor*/
 SELECT user,host FROM mysql.user WHERE host="%";
 
+/*Verificar que los usuarios remotos hayan sido creados*/
+select  User, Host From mysql.user where host='%' and account_locked='N';
+
+
 /* Verificar los roles asignados a los usuarios remotos creados en el servidor*/
 SELECT
 	FROM_USER AS Rol,
@@ -23,3 +27,42 @@ SELECT
     TO_HOST AS Host_Usuario
 FROM mysql.role_edges
 ORDER BY FROM_USER, TO_USER;
+
+SELECT 
+    p.id,
+    p.name,
+    p.description,
+    b.db_users AS inserted_by,
+
+    COALESCE(
+        GROUP_CONCAT(
+            DISTINCT re.FROM_USER
+            ORDER BY re.FROM_USER
+            SEPARATOR ', '
+        ),
+        'Sin rol'
+    ) AS roles,
+
+    b.description AS operation_description,
+    b.operation_date
+
+FROM tb_products AS p
+
+JOIN tb_logs AS b
+    ON b.description LIKE CONCAT('%ID=', p.id, '%')
+
+LEFT JOIN mysql.role_edges AS re
+    ON re.TO_USER = SUBSTRING_INDEX(b.db_users, '@', 1)
+
+WHERE b.operation = 'Create'
+  AND b.table_name = 'tb_products'
+
+GROUP BY
+    p.id,
+    p.name,
+    p.description,
+    b.db_users,
+    b.description,
+    b.operation_date
+
+ORDER BY b.operation_date ASC;
