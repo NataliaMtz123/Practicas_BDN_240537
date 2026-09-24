@@ -7,6 +7,9 @@ SHOW TABLES;
 /*Verificar el total de triggers en mi base de datos*/
 SHOW TRIGGERS FROM db_test;
 
+/*cuantosz registros existen en la tabla users?*/
+select count(*)  AS total_registros From tb_users;
+
 /* Consultar los registros de los usuarios*/
 SELECT * FROM tb_users;
 /* Consultar los registros de la bitacora */
@@ -27,6 +30,23 @@ SELECT
     TO_HOST AS Host_Usuario
 FROM mysql.role_edges
 ORDER BY FROM_USER, TO_USER;
+
+/* Consulta para verificar que usuarios de la base de datos, inserto a que usuario de la plataforma 
+agregando el rol del SBBD*/
+SELECT u.nick, u.email, b.db_userS AS inserted_by,
+GROUP_CONCAT(DISTINCT re.FROM_USER ORDER BY re.FROM_USER SEPARATOR ', ' ) AS roles,
+    b.operation_description,
+    b.operation_date
+FROM tb_users u
+JOIN tb_logs b
+    ON b.operation_description LIKE CONCAT('%', u.nick, '%')
+    AND b.operation_description LIKE CONCAT('%', u.email, '%')
+LEFT JOIN mysql.role_edges re
+    ON re.TO_USER = SUBSTRING_INDEX(b.db_users, '@', 1)
+WHERE b.table_operation = 'Create'
+AND b.table_name = 'tb_users'
+GROUP BY u.nick, u.email, b.db_user, b.operation_description, b.operation_date
+ORDER BY b.operation_date asc;
 
 SELECT 
     p.id,
