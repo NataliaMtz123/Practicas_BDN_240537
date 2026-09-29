@@ -8,4 +8,4 @@ Periodo: Septiembre - Diciembre 2026
 |ID|Número de Práctica| Nombre de la Práctica| Potenciador|Estatus|
 |---|---|---|---|---|
 |1.|Practica 02|Conexión Remota en MYSQL|42|💚Concluida|
-|2.|Conexiones Remotas para Bases de Datos SQL 1| Crear y administrar usuarios y privilegios para conexiones desde internet o redes locales |??|💛En progreso|
+|2.|Conexiones Remotas para Bases de Datos SQL 1| Crear y administrar usuarios y privilegios para conexiones desde internet o redes locales |60|💚Concluida|
