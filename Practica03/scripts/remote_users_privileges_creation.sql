@@ -1,6 +1,6 @@
 /* CREACION DE USUARIOS REMOTOS */
 
-CREATE USER IF NOT EXISTS 'natalia.carrasco'@'%' IDENTIFIED BY '240853';
+CREATE USER IF NOT EXISTS 'natalia.carrasco'@'%' IDENTIFIED BY '240537';
 CREATE USER IF NOT EXISTS 'marco.ramirez'@'%' IDENTIFIED BY 'qwerty123';
 CREATE USER IF NOT EXISTS 'aylin.esteban'@'%' IDENTIFIED BY '240853';
 CREATE USER IF NOT EXISTS 'uriel.valenzuela'@'%' IDENTIFIED BY '240485';
@@ -74,6 +74,9 @@ GRANT SELECT
 ON db_test.tbc_categories
 TO 'seller';
 
+GRANT EXECUTE
+ON PROCEDURE db_test.sp_soft_delete_user
+TO 'support'@'%';
 
 
 

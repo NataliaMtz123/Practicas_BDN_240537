@@ -13,3 +13,9 @@ SELECT *
 FROM vw_total_products_by_category
 order by
 	category_ID is null;
+    
+/*4. Muestra los procedimientos de la base de datos*/
+SHOW PROCEDURE STATUS WHERE Db= 'db_test';
+
+
+    
