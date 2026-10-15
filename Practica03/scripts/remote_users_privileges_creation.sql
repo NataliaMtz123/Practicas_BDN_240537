@@ -7,6 +7,8 @@ CREATE USER IF NOT EXISTS 'uriel.valenzuela'@'%' IDENTIFIED BY '240485';
 CREATE USER IF NOT EXISTS 'yazmin.esquivel'@'%' IDENTIFIED BY '240235';
 CREATE USER IF NOT EXISTS 'uriel.gonzales'@'%' IDENTIFIED BY '240463';
 CREATE USER IF NOT EXISTS 'saul.barrios'@'%' IDENTIFIED BY '240196';
+CREATE USER IF NOT EXISTS 'saul.barrios'@'%' IDENTIFIED BY '240196'; /*Buyer*/
+
 
 
 /* ASIGNACION DE PRIVILEGIOS DEL SUPER USUARIO - IMPORTANTE: SOLO USTEDES */
@@ -73,6 +75,27 @@ TO 'seller';
 GRANT SELECT 
 ON db_test.tbc_categories
 TO 'seller';
+
+/*BUYER*/
+GRANT SELECT,INSERT,UPDATE
+ON db_test.tb_carts
+TO 'buyer';
+
+GRANT SELECT,INSERT,UPDATE
+ON db_test.tb_carts_items
+TO 'buyer';
+
+GRANT SELECT,INSERT
+ON db_test.tb_buyer_orders
+TO 'buyer';
+
+GRANT SELECT,INSERT,UPDATE
+ON db_test.tbd_carts_items
+TO 'buyer';
+
+GRANT SELECT,INSERT,UPDATE
+ON db_test.tbd__uaers_wishlist_products
+TO 'buyer';
 
 GRANT EXECUTE
 ON PROCEDURE db_test.sp_soft_delete_user
