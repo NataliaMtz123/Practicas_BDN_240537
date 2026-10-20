@@ -82,7 +82,7 @@ ON db_test.tb_carts
 TO 'buyer';
 
 GRANT SELECT,INSERT,UPDATE
-ON db_test.tb_carts_items
+ON db_test.tbd_carts_items
 TO 'buyer';
 
 GRANT SELECT,INSERT
@@ -94,7 +94,7 @@ ON db_test.tbd_carts_items
 TO 'buyer';
 
 GRANT SELECT,INSERT,UPDATE
-ON db_test.tbd__uaers_wishlist_products
+ON db_test.tbd_users_wishlist_products
 TO 'buyer';
 
 GRANT EXECUTE
