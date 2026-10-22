@@ -8,6 +8,10 @@ CREATE USER IF NOT EXISTS 'yazmin.esquivel'@'%' IDENTIFIED BY '240235';
 CREATE USER IF NOT EXISTS 'uriel.gonzales'@'%' IDENTIFIED BY '240463';
 CREATE USER IF NOT EXISTS 'saul.barrios'@'%' IDENTIFIED BY '240196';
 CREATE USER IF NOT EXISTS 'saul.barrios'@'%' IDENTIFIED BY '240196'; /*Buyer*/
+CREATE USER IF NOT EXISTS 'app_web'@'%' IDENTIFIED BY 'Web123';
+CREATE USER IF NOT EXISTS 'app_movil'@'%' IDENTIFIED BY 'Mobile890';
+
+
 
 
 
@@ -97,9 +101,22 @@ GRANT SELECT,INSERT,UPDATE
 ON db_test.tbd_users_wishlist_products
 TO 'buyer';
 
+GRANT INSERT
+on db_test.tb_people
+TO 'user_not_registered';
+
+GRANT INSERT
+on db_test.tb_users
+TO 'user_not_registered';
+
 GRANT EXECUTE
 ON PROCEDURE db_test.sp_soft_delete_user
 TO 'support'@'%';
+
+
+GRANT EXECUTE
+ON PROCEDURE db_test.sp_register_user
+TO 'user_not_registered'@'%';
 
 
 
@@ -112,10 +129,24 @@ GRANT 'support' TO 'uriel.gonzales'@'%';
 GRANT 'seller' TO 'yazmin.esquivel'@'%';
 GRANT 'seller' TO 'aylin.esteban'@'%';
 
+/* ASIGNAR ROL A LOS USUARIOS DE LAS APLICACIONES */
+
+GRANT 'user_not_registered' TO 'app_web'@'%';
+GRANT 'user_not_registered' TO 'app_movil'@'%';
+
+
+/* ESTABLECER ROL PREDETERMINADO */
+
+SET DEFAULT ROLE 'user_not_registered' TO 'app_web'@'%';
+SET DEFAULT ROLE 'user_not_registered'TO 'app_movil'@'%';
+
+/*Dar permiso para ejecutar el procedimiento*/
+GRANT EXECUTE ON PROCEDURE db_test.sp_register_user TO 'user_not_registered';
+
 
 /* ESTABLECER ROLES PREDETERMINADOS */
 
-SET DEFAULT ROLE 'superadmin' 
+SET DEFAULT ROLE 'superadmin'   
 TO 'natalia.carrasco'@'%';
 
 SET DEFAULT ROLE 'admin' 

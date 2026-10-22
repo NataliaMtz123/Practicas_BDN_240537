@@ -1,0 +1,328 @@
+# PROMPT MAESTRO PARA ARCHIFY: GENERACIÓN DEL DICCIONARIO DE DATOS COMPLETO
+
+## 1. Rol y objetivo principal
+
+Actúa como un **arquitecto de bases de datos, analista de datos y especialista en documentación técnica y funcional de sistemas relacionales**.
+
+Tu tarea consiste en analizar exhaustivamente el archivo SQL de respaldo `respaldo_2010.sql` y, a partir de su estructura real, construir un **diccionario de datos integral, detallado, organizado, visual e interactivo** que documente todos los componentes de la base de datos.
+
+El diccionario debe servir como documentación oficial de referencia para desarrolladores, administradores de bases de datos, analistas y usuarios técnicos que necesiten comprender el propósito de la base de datos, la función de sus tablas y columnas, las restricciones implementadas y las relaciones entre sus entidades.
+
+**Regla fundamental:** utiliza exclusivamente la estructura y las definiciones verificables presentes en el respaldo SQL. No inventes tablas, columnas, restricciones, relaciones, reglas de negocio ni funcionalidades que no estén sustentadas por el archivo.
+
+## 2. Análisis obligatorio del respaldo SQL
+
+Antes de generar la documentación, analiza el archivo completo y realiza las siguientes tareas:
+
+1. Identifica el sistema gestor de base de datos y el dialecto SQL utilizado, cuando sea posible.
+2. Identifica el nombre de la base de datos y su configuración, si aparece en el respaldo.
+3. Localiza todas las instrucciones `CREATE TABLE` y analiza cada definición de tabla.
+4. Identifica todas las columnas, respetando exactamente sus nombres, el orden en que aparecen y sus definiciones originales.
+5. Detecta las claves primarias (PK), claves foráneas (FK), claves únicas (UNIQUE), índices y restricciones CHECK, cuando existan.
+6. Identifica las propiedades `NULL`, `NOT NULL`, `DEFAULT`, `AUTO_INCREMENT`, valores predeterminados y demás atributos de las columnas.
+7. Analiza las relaciones declaradas mediante claves foráneas y las restricciones referenciales asociadas.
+8. Examina las tablas intermedias que implementen relaciones muchos a muchos.
+9. Identifica columnas de auditoría, trazabilidad, estado, fechas de creación, fechas de actualización y otros campos de control.
+10. Examina las instrucciones adicionales del respaldo, como `ALTER TABLE`, índices, triggers, vistas, procedimientos almacenados, funciones y eventos, si están presentes.
+11. Distingue entre los objetos definidos en el esquema y los datos insertados mediante instrucciones `INSERT`.
+12. Verifica que la documentación abarque la totalidad de las tablas y columnas encontradas en el archivo.
+
+Si el archivo está incompleto, contiene errores o no permite confirmar alguna propiedad, indícalo expresamente. No completes información faltante mediante suposiciones.
+
+## 3. Diccionario general de tablas
+
+Genera un catálogo de todas las tablas identificadas.
+
+Para cada tabla, documenta los siguientes elementos:
+
+- Nombre exacto de la tabla.
+- Nombre funcional o título descriptivo.
+- Propósito técnico.
+- Propósito de negocio.
+- Tipo de información almacenada.
+- Entidad o concepto del sistema que representa.
+- Clave primaria.
+- Claves foráneas.
+- Cantidad de columnas.
+- Relaciones con otras tablas.
+- Dependencias relevantes.
+- Presencia de campos de auditoría o trazabilidad.
+- Observaciones técnicas.
+- Reglas de negocio verificables en el esquema.
+- Posibles ambigüedades que requieran confirmación.
+
+Explica con claridad qué representa cada tabla dentro del sistema y por qué existe, diferenciando los hechos demostrables de las interpretaciones funcionales.
+
+Si el propósito de negocio no se puede determinar únicamente a partir del SQL, indica que es una interpretación pendiente de validación.
+
+## 4. Diccionario detallado de columnas
+
+Documenta individualmente **todas las columnas de todas las tablas**, sin omitir ninguna, incluso aquellas que parezcan auxiliares, redundantes o poco relevantes.
+
+Para cada columna, incluye los siguientes atributos:
+
+1. Tabla a la que pertenece.
+2. Nombre exacto de la columna.
+3. Tipo de dato original.
+4. Longitud, precisión y escala, cuando correspondan.
+5. Permite valores `NULL`: sí o no.
+6. Valor predeterminado (`DEFAULT`), si existe.
+7. Participación en clave primaria (`PK`).
+8. Participación en clave foránea (`FK`).
+9. Tabla y columna de referencia, cuando corresponda.
+10. Participación en una restricción `UNIQUE`.
+11. Participación en índices, cuando sea relevante.
+12. Restricciones adicionales, como `CHECK`.
+13. Propiedades especiales, como `AUTO_INCREMENT`, valores generados o actualizaciones automáticas.
+14. Descripción técnica: qué representa la columna dentro de la estructura.
+15. Descripción funcional: qué información representa desde la perspectiva del negocio.
+16. Finalidad del dato y forma en que podría utilizarse en el sistema.
+17. Ejemplos ilustrativos de valores compatibles con el tipo de dato, sin presentarlos como datos reales del respaldo.
+18. Dependencias y relaciones con otras columnas.
+19. Observaciones, limitaciones o consideraciones de integridad.
+20. Nivel de certeza de la descripción funcional: confirmado por el esquema, inferido o pendiente de validación.
+
+No reduzcas la documentación a una simple lista de nombres y tipos de datos. Cada columna debe tener una explicación comprensible y útil.
+
+Cuando el nombre de una columna sea ambiguo, describe lo que se puede demostrar a partir de su definición y contexto. No atribuyas significados comerciales específicos sin evidencia.
+
+## 5. Documentación de claves y restricciones
+
+Crea una sección específica para documentar las restricciones de integridad de la base de datos.
+
+### Claves primarias
+
+Para cada PK, indica:
+
+- Tabla.
+- Columna o conjunto de columnas que la conforman.
+- Si es simple o compuesta.
+- Qué función cumple para identificar registros.
+- Restricciones asociadas.
+
+### Claves foráneas
+
+Para cada FK, documenta:
+
+- Nombre de la restricción, si está definido.
+- Tabla de origen.
+- Columna o columnas de origen.
+- Tabla de destino.
+- Columna o columnas referenciadas.
+- Cardinalidad respaldada por las restricciones.
+- Comportamiento `ON DELETE`, si está declarado.
+- Comportamiento `ON UPDATE`, si está declarado.
+- Finalidad técnica y funcional.
+- Consecuencias para la integridad referencial.
+
+### Otras restricciones
+
+Documenta también:
+
+- Restricciones `UNIQUE`.
+- Restricciones `CHECK`.
+- Reglas `NOT NULL`.
+- Valores predeterminados.
+- Índices simples y compuestos.
+- Restricciones sobre valores y estados.
+- Cualquier otra regla de integridad presente en el SQL.
+
+Diferencia entre las restricciones declaradas explícitamente y las reglas que solamente pueden inferirse.
+
+## 6. Mapa completo de relaciones entre tablas
+
+Construye un mapa visual del modelo relacional basado en las claves foráneas verificadas.
+
+Para cada relación, especifica:
+
+- Tabla de origen y tabla de destino.
+- Columnas involucradas.
+- Tipo de relación: uno a uno, uno a muchos o muchos a muchos, cuando pueda justificarse.
+- Cardinalidad y opcionalidad sustentadas por el esquema.
+- Restricciones referenciales.
+- Explicación funcional de la relación.
+- Tablas intermedias involucradas, si existen.
+
+Representa las relaciones mediante un diagrama ER o EER, con nombres de entidades, claves primarias, claves foráneas y conectores claramente identificados.
+
+No dibujes como confirmadas las relaciones que no tengan soporte estructural. Si existe una relación lógica probable sin FK declarada, documéntala por separado como hipótesis.
+
+## 7. Análisis de tablas intermedias y relaciones muchos a muchos
+
+Identifica las tablas que funcionen como entidades asociativas o tablas puente.
+
+Para cada una, explica:
+
+- Qué entidades relaciona.
+- Qué claves foráneas utiliza.
+- Si tiene clave primaria compuesta o un identificador independiente.
+- Qué representa cada registro.
+- Si contiene atributos propios de la relación.
+- Qué restricciones evitan duplicidades.
+- Qué reglas de negocio pueden confirmarse a partir de su estructura.
+
+No clasifiques automáticamente una tabla como tabla puente solo por tener varias columnas de identificadores: comprueba su estructura y relaciones.
+
+## 8. Campos de auditoría, fechas y trazabilidad
+
+Identifica y documenta las columnas relacionadas con:
+
+- Creación de registros.
+- Actualización de registros.
+- Estado activo o inactivo.
+- Usuario responsable de una operación.
+- Historial de modificaciones.
+- Registro de eventos.
+- Control de cambios.
+- Seguimiento de operaciones.
+- Eliminación lógica, si existe.
+
+Explica la finalidad técnica y funcional de cada campo, así como los mecanismos automáticos definidos en el SQL.
+
+Diferencia entre almacenar una fecha de actualización y conservar un historial completo de cambios. No afirmes que una tabla tiene auditoría completa si el esquema no demuestra que se guarden versiones o eventos históricos.
+
+Si existen triggers de auditoría, documenta su evento, tabla asociada, operación y comportamiento verificable.
+
+## 9. Catálogo de tipos de datos
+
+Genera un apartado que explique los tipos de datos utilizados en la base de datos.
+
+Agrúpalos por categorías, por ejemplo:
+
+- Enteros.
+- Decimales y valores monetarios.
+- Cadenas de caracteres.
+- Fechas y horas.
+- Valores booleanos o tipos equivalentes.
+- Datos binarios.
+- Tipos especiales, si existen.
+
+Explica su significado técnico y cómo se utilizan en el esquema analizado.
+
+Conserva los tipos originales del SQL. No sustituyas ni conviertas tipos durante la documentación.
+
+## 10. Reglas de negocio y dependencias
+
+Identifica las reglas de negocio que estén expresadas mediante restricciones, relaciones, valores predeterminados, índices, triggers u otros objetos del respaldo.
+
+Para cada regla, indica:
+
+- Descripción.
+- Tablas y columnas afectadas.
+- Mecanismo que la implementa.
+- Consecuencia para la integridad de los datos.
+- Si está confirmada por el SQL o requiere validación funcional.
+
+Separa las reglas declaradas explícitamente de las interpretaciones realizadas por el agente.
+
+## 11. Interfaz y organización del diccionario
+
+Organiza el resultado en una interfaz clara, profesional, navegable e interactiva.
+
+Incluye:
+
+- Panel general con el nombre de la base de datos.
+- Catálogo navegable de tablas.
+- Buscador por nombre de tabla o columna.
+- Filtros por tipo de dato, PK, FK y nulabilidad.
+- Vista detallada de cada tabla.
+- Fichas de documentación para cada columna.
+- Sección de restricciones e índices.
+- Diagrama de relaciones interactivo.
+- Navegación desde una FK hacia la tabla referenciada.
+- Navegación desde una tabla hacia las tablas relacionadas.
+- Sección de auditoría y trazabilidad.
+- Indicadores de avance de la documentación.
+- Diseño adaptable a pantallas de escritorio y dispositivos móviles.
+
+Al seleccionar una tabla, muestra sus metadatos y todas sus columnas. Al seleccionar una columna, muestra su descripción técnica, su significado funcional, sus restricciones y sus relaciones.
+
+Utiliza colores, iconos y etiquetas consistentes para distinguir PK, FK, columnas obligatorias, columnas opcionales, índices y campos de auditoría.
+
+Si Archify permite animaciones, aplícalas de forma discreta y fluida, sin perjudicar la legibilidad, la navegación ni el rendimiento.
+
+No inventes funcionalidades de interfaz que la plataforma no pueda implementar. Si una función no está disponible, indícala y proporciona la alternativa más cercana.
+
+## 12. Métricas de integridad y cobertura
+
+Incluye un resumen cuantitativo con:
+
+- Número total de tablas identificadas.
+- Número total de columnas.
+- Número total de PK.
+- Número total de FK.
+- Número total de restricciones `UNIQUE`.
+- Número total de índices identificados.
+- Número de relaciones documentadas.
+- Número de columnas documentadas.
+- Número de tablas pendientes de documentación.
+- Número de columnas cuya descripción funcional requiere validación.
+
+Calcula las métricas a partir del archivo analizado. No inventes cifras.
+
+Si el respaldo contiene datos insertados y es posible analizarlos de manera confiable, puedes incluir una sección separada con conteos de registros por tabla.
+
+Distingue claramente entre los registros contenidos en el respaldo y los registros que existen actualmente en una base de datos en ejecución. No afirmes que los conteos son actuales si no se ha consultado la base de datos activa.
+
+## 13. Validación y control de calidad
+
+Antes de finalizar, ejecuta una revisión de consistencia documental:
+
+1. Comprueba que todas las tablas del respaldo estén en el catálogo.
+2. Comprueba que todas las columnas estén documentadas.
+3. Verifica que los nombres, tipos y restricciones coincidan con el SQL original.
+4. Comprueba que cada PK y FK documentada tenga respaldo en el archivo.
+5. Verifica que las referencias entre tablas apunten a columnas existentes.
+6. Revisa que las tablas intermedias estén correctamente identificadas.
+7. Confirma que no se hayan inventado cardinalidades, reglas de negocio o descripciones presentadas como hechos.
+8. Comprueba que los objetos adicionales, si existen, estén documentados.
+9. Identifica contradicciones o limitaciones presentes en el esquema original.
+10. Presenta un resumen de las validaciones completadas y de los puntos pendientes.
+
+Si detectas errores en el respaldo, documéntalos y explica sus posibles consecuencias, pero no modifiques el esquema.
+
+## 14. Restricciones obligatorias
+
+Durante todo el proceso:
+
+- No ejecutes instrucciones SQL.
+- No restaures la base de datos.
+- No insertes, actualices ni elimines registros.
+- No alteres tablas ni columnas.
+- No cambies nombres, tipos de datos, claves o restricciones.
+- No generes migraciones ni modificaciones automáticas del esquema.
+- No sustituyas las definiciones originales por estructuras inventadas.
+- No omitas columnas por considerarlas poco importantes.
+- No presentes interpretaciones como hechos confirmados.
+- No afirmes haber accedido al archivo si no se ha podido leer realmente.
+- No afirmes haber consultado datos actuales si solo se dispone del respaldo.
+
+El trabajo solicitado es de análisis, documentación y visualización; no de modificación de la base de datos.
+
+## 15. Entregables finales
+
+Genera los siguientes resultados:
+
+**Entregable A. Diccionario de datos completo:** documentación de todas las tablas y columnas, con atributos técnicos y descripciones funcionales.
+
+**Entregable B. Catálogo de restricciones:** inventario de PK, FK, índices, restricciones `UNIQUE`, `CHECK`, nulabilidad y valores predeterminados.
+
+**Entregable C. Diagrama ER/EER:** representación visual de las entidades, atributos clave y relaciones verificadas.
+
+**Entregable D. Catálogo de relaciones:** explicación de cada vínculo entre tablas y de las tablas intermedias.
+
+**Entregable E. Informe de auditoría y trazabilidad:** documentación de los campos de control y de los mecanismos de auditoría identificados.
+
+**Entregable F. Informe de cobertura y calidad:** métricas, validaciones realizadas, limitaciones y elementos pendientes de confirmación.
+
+**Entregable G. Exportación documental:** si Archify lo permite, genera una versión descargable del diccionario de datos en formato Markdown, CSV, HTML o PDF. Conserva los nombres originales y utiliza un formato legible y estructurado.
+
+## 16. Instrucción final de ejecución
+
+Comienza leyendo y analizando íntegramente `respaldo_2010.sql`. No empieces a construir la documentación definitiva hasta haber identificado los objetos y las definiciones disponibles.
+
+Construye el diccionario de forma sistemática, tabla por tabla y columna por columna. Mantén trazabilidad entre cada descripción y la definición SQL que la sustenta.
+
+Al finalizar, presenta un resumen con el número real de tablas, columnas, restricciones y relaciones documentadas; señala cualquier limitación de acceso o análisis y confirma expresamente qué elementos quedaron completos y cuáles requieren validación.
+
+**El criterio de éxito es obtener un diccionario de datos completo, verificable, técnicamente preciso y funcionalmente comprensible, basado en el respaldo real y sin alterar la base de datos original.**
