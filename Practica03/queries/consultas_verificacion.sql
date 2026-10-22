@@ -20,3 +20,6 @@ ORDER BY category_id is null;
 
 /* 5. Muestra los procedimientos de la base de datos */
 SHOW PROCEDURE STATUS WHERE Db = 'db_test';
+
+/* 13. Consulta la trazabilidad de usuarios */
+select * from vw_trazabilidad_usuarios ORDER BY operation_date desc;
