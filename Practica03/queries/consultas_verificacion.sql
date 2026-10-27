@@ -85,3 +85,36 @@ SELECT
         AS porcentaje_inactivos
 FROM db_test.tb_users u
 WHERE u.nick LIKE 'test_STATUS7222_%';
+
+/* Catidad de triggers*/
+SELECT COUNT(*) AS total_triggers
+FROM information_schema.TRIGGERS
+WHERE TRIGGER_SCHEMA = 'db_test';
+
+/* Cantidad de usuarios en la BD*/
+/*10222 insertados con el procedimiento*/
+/* 11 insertados desde la terminal*/
+SELECT COUNT(*) AS total_usuarios
+FROM tb_users;
+
+/* Cantidad de usarios Activos e Inactivos*/
+SELECT
+    COUNT(*) AS total_usuarios,
+    SUM(status = b'1') AS usuarios_activos,
+    SUM(status = b'0') AS usuarios_inactivos
+FROM db_test.tb_users;
+
+/*Mostrar las vistas*/
+SELECT
+    TABLE_NAME AS nombre_vista,
+    TABLE_TYPE AS tipo
+FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = 'db_test'
+  AND TABLE_TYPE = 'VIEW'
+ORDER BY TABLE_NAME;
+
+/*Mostrar el total de trazablidades*/
+SELECT COUNT(*) AS total_vistas_trazabilidad
+FROM information_schema.VIEWS
+WHERE TABLE_SCHEMA = 'db_test'
+  AND TABLE_NAME LIKE 'vw_trazabilidad_%';
