@@ -1,0 +1,10 @@
+import raw from './data/model.json';
+export type Column = {name:string;type:string;raw:string;null:boolean;default:string;ai:boolean;ordinal:number;description:string;classification:string;nature:string;domain:string;functionalDomain:string;pk:boolean;unique:(string|string[])[][];length:number|null;precision:number|null;scale:number|null;conceptual:string;allowed:string[]};
+export type Table = {name:string;line:number;columns:Column[];pk:string[];indexes:[string,string,string[]][];checks:string[];count:number;countStatus:string;countSource:string;category:string;categoryEvidence:string};
+export type Relation = {id:string;name:string;source:string;target:string;cols:string[];refs:string[];confirmed:boolean;optional:boolean;unique:boolean;identifying:boolean;cardinality:string;DELETE:string;UPDATE:string;evidence?:string};
+export const model = raw as unknown as {schema:string;source:string;sha256:string;method:string;limits:string;tables:Table[];relationships:Relation[];objects:{type:string;name:string;line:number}[];warnings:string[];missingDependencies:string[];statementInventory:Record<string,number>;statistics:Record<string,number>};
+export const fmt=(n:number)=>new Intl.NumberFormat('es-MX').format(n);
+export const related=(name:string,relations=model.relationships.filter(r=>r.confirmed))=>relations.filter(r=>r.source===name||r.target===name);
+export function pathBetween(start:string,end:string,relations:Relation[]) {const queue=[[start]];const seen=new Set([start]);while(queue.length){const path=queue.shift()!;const last=path.at(-1)!;if(last===end)return path;for(const r of related(last,relations)){const next=r.source===last?r.target:r.source;if(!seen.has(next)){seen.add(next);queue.push([...path,next]);}}}return [];}
+export function readPreference<T>(key:string,fallback:T):T {try{return JSON.parse(localStorage.getItem('eer2710:'+key)||'null')??fallback;}catch{return fallback;}}
+export function savePreference(key:string,value:unknown){try{localStorage.setItem('eer2710:'+key,JSON.stringify(value));}catch{/* Storage may be unavailable in private sessions. */}}
