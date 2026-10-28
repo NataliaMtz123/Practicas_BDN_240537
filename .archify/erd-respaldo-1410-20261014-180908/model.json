@@ -1,0 +1,1286 @@
+{
+  "file": "respaldo_1410.sql",
+  "schema": "db_test",
+  "engine": "MySQL 8.0.36",
+  "processedAt": "2026-10-14",
+  "tables": [
+    {
+      "name": "tb_carts",
+      "columns": [
+        {
+          "name": "ID",
+          "decl": "int unsigned NOT NULL AUTO_INCREMENT",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "user_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "uk",
+            "fk"
+          ]
+        },
+        {
+          "name": "status",
+          "decl": "bit(1) DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "decl": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "uk_cart_user",
+          "unique": true,
+          "columns": [
+            "user_ID"
+          ]
+        }
+      ],
+      "fks": [
+        {
+          "name": "tb_carts_ibfk_1",
+          "columns": [
+            "user_ID"
+          ],
+          "table": "tb_users",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        }
+      ],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "ID"
+      ]
+    },
+    {
+      "name": "tb_logs",
+      "columns": [
+        {
+          "name": "ID",
+          "decl": "int NOT NULL AUTO_INCREMENT",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "table_name",
+          "decl": "varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL"
+        },
+        {
+          "name": "operation",
+          "decl": "enum('Create','Read','Update','Delete') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL"
+        },
+        {
+          "name": "db_users",
+          "decl": "varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL"
+        },
+        {
+          "name": "description",
+          "decl": "text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL"
+        },
+        {
+          "name": "operation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "operation_status",
+          "decl": "bit(1) DEFAULT b'1'"
+        }
+      ],
+      "indexes": [],
+      "fks": [],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "ID"
+      ]
+    },
+    {
+      "name": "tb_payment_transactions",
+      "columns": [
+        {
+          "name": "ID",
+          "decl": "int unsigned NOT NULL AUTO_INCREMENT",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "payment_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "fk"
+          ]
+        },
+        {
+          "name": "event_type",
+          "decl": "enum('Created','Authorized','Captured','Failed','Refunded','PartiallyRefunded') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL"
+        },
+        {
+          "name": "amount",
+          "decl": "decimal(12,2) NOT NULL"
+        },
+        {
+          "name": "event_reference",
+          "decl": "varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL"
+        },
+        {
+          "name": "remarks",
+          "decl": "text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "payment_ID",
+          "unique": false,
+          "columns": [
+            "payment_ID"
+          ]
+        }
+      ],
+      "fks": [
+        {
+          "name": "tb_payment_transactions_ibfk_1",
+          "columns": [
+            "payment_ID"
+          ],
+          "table": "tb_payments",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        }
+      ],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "ID"
+      ]
+    },
+    {
+      "name": "tb_payments",
+      "columns": [
+        {
+          "name": "ID",
+          "decl": "int unsigned NOT NULL AUTO_INCREMENT",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "order_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "fk"
+          ]
+        },
+        {
+          "name": "amount",
+          "decl": "decimal(12,2) NOT NULL"
+        },
+        {
+          "name": "currency",
+          "decl": "char(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'MXN'"
+        },
+        {
+          "name": "payment_method",
+          "decl": "enum('Card','SPEI','Transfer','Cash') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL"
+        },
+        {
+          "name": "provider",
+          "decl": "varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL"
+        },
+        {
+          "name": "provider_reference",
+          "decl": "varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL"
+        },
+        {
+          "name": "payment_status",
+          "decl": "enum('Pending','Authorized','Paid','Failed','Refunded','PartiallyRefunded') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Pending'"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "paid_date",
+          "decl": "datetime DEFAULT NULL"
+        },
+        {
+          "name": "last_update",
+          "decl": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "uk_payment_reference",
+          "unique": true,
+          "columns": [
+            "provider",
+            "provider_reference"
+          ]
+        },
+        {
+          "name": "fk_payments_order",
+          "unique": false,
+          "columns": [
+            "order_ID"
+          ]
+        }
+      ],
+      "fks": [
+        {
+          "name": "fk_payments_order",
+          "columns": [
+            "order_ID"
+          ],
+          "table": "tbb_orders",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        }
+      ],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "ID"
+      ]
+    },
+    {
+      "name": "tb_products",
+      "columns": [
+        {
+          "name": "ID",
+          "decl": "int unsigned NOT NULL AUTO_INCREMENT",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "SKU",
+          "decl": "varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL",
+          "keys": [
+            "uk"
+          ]
+        },
+        {
+          "name": "name",
+          "decl": "varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL"
+        },
+        {
+          "name": "description",
+          "decl": "text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci"
+        },
+        {
+          "name": "current_price",
+          "decl": "decimal(10,2) NOT NULL DEFAULT '0.00'"
+        },
+        {
+          "name": "current_stock",
+          "decl": "int unsigned NOT NULL DEFAULT '0'"
+        },
+        {
+          "name": "status",
+          "decl": "bit(1) DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "decl": "datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "SKU",
+          "unique": true,
+          "columns": [
+            "SKU"
+          ]
+        }
+      ],
+      "fks": [],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "ID"
+      ]
+    },
+    {
+      "name": "tb_seller_orders",
+      "columns": [
+        {
+          "name": "ID",
+          "decl": "int unsigned NOT NULL AUTO_INCREMENT",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "order_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "fk"
+          ]
+        },
+        {
+          "name": "seller_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "fk"
+          ]
+        },
+        {
+          "name": "subtotal",
+          "decl": "decimal(12,2) NOT NULL DEFAULT '0.00'"
+        },
+        {
+          "name": "shipping_cost",
+          "decl": "decimal(12,2) NOT NULL DEFAULT '0.00'"
+        },
+        {
+          "name": "fulfillment_status",
+          "decl": "enum('Pending','Accepted','Preparing','Sent','Delivered','Canceled','Returned') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Pending'"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "decl": "datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "uk_order_seller",
+          "unique": true,
+          "columns": [
+            "order_ID",
+            "seller_ID"
+          ]
+        },
+        {
+          "name": "fk_seller_orders_seller",
+          "unique": false,
+          "columns": [
+            "seller_ID"
+          ]
+        }
+      ],
+      "fks": [
+        {
+          "name": "fk_seller_orders_order",
+          "columns": [
+            "order_ID"
+          ],
+          "table": "tbb_orders",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        },
+        {
+          "name": "fk_seller_orders_seller",
+          "columns": [
+            "seller_ID"
+          ],
+          "table": "tb_users",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        }
+      ],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "ID"
+      ]
+    },
+    {
+      "name": "tb_users",
+      "columns": [
+        {
+          "name": "ID",
+          "decl": "int unsigned NOT NULL AUTO_INCREMENT",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "email",
+          "decl": "varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL",
+          "keys": [
+            "uk"
+          ]
+        },
+        {
+          "name": "nick",
+          "decl": "varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL",
+          "keys": [
+            "uk"
+          ]
+        },
+        {
+          "name": "password",
+          "decl": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "decl": "datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_login",
+          "decl": "datetime DEFAULT NULL"
+        },
+        {
+          "name": "status",
+          "decl": "bit(1) NOT NULL DEFAULT b'1'"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "email",
+          "unique": true,
+          "columns": [
+            "email"
+          ]
+        },
+        {
+          "name": "nickname",
+          "unique": true,
+          "columns": [
+            "nick"
+          ]
+        }
+      ],
+      "fks": [],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "ID"
+      ]
+    },
+    {
+      "name": "tbb_orders",
+      "columns": [
+        {
+          "name": "ID",
+          "decl": "int unsigned NOT NULL AUTO_INCREMENT",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "User_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "fk"
+          ]
+        },
+        {
+          "name": "key",
+          "decl": "varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL"
+        },
+        {
+          "name": "total_products",
+          "decl": "int NOT NULL"
+        },
+        {
+          "name": "total_cost",
+          "decl": "decimal(10,3) NOT NULL DEFAULT '0.000'"
+        },
+        {
+          "name": "status_string",
+          "decl": "enum('Registered','Wishlist','Payed','Canceled','Delivered','Devolved','Attented','Sended') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Registered'"
+        },
+        {
+          "name": "status",
+          "decl": "bit(1) DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL"
+        },
+        {
+          "name": "last_update",
+          "decl": "datetime DEFAULT NULL"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "fk_user_2_idx",
+          "unique": false,
+          "columns": [
+            "User_ID"
+          ]
+        }
+      ],
+      "fks": [
+        {
+          "name": "fk_user_2",
+          "columns": [
+            "User_ID"
+          ],
+          "table": "tb_users",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        }
+      ],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "ID"
+      ]
+    },
+    {
+      "name": "tbc_categories",
+      "columns": [
+        {
+          "name": "ID",
+          "decl": "int unsigned NOT NULL AUTO_INCREMENT",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "name",
+          "decl": "varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL",
+          "keys": [
+            "uk"
+          ]
+        },
+        {
+          "name": "description",
+          "decl": "text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci"
+        },
+        {
+          "name": "sup_id_category",
+          "decl": "int unsigned DEFAULT NULL",
+          "keys": [
+            "fk"
+          ]
+        },
+        {
+          "name": "status",
+          "decl": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "decl": "datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "name",
+          "unique": true,
+          "columns": [
+            "name"
+          ]
+        },
+        {
+          "name": "fk_superior_category",
+          "unique": false,
+          "columns": [
+            "sup_id_category"
+          ]
+        }
+      ],
+      "fks": [
+        {
+          "name": "fk_superior_category",
+          "columns": [
+            "sup_id_category"
+          ],
+          "table": "tbc_categories",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        }
+      ],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "ID"
+      ]
+    },
+    {
+      "name": "tbd_cart_items",
+      "columns": [
+        {
+          "name": "cart_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "pk",
+            "fk"
+          ]
+        },
+        {
+          "name": "product_offer_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "quantity",
+          "decl": "int unsigned NOT NULL DEFAULT '1'"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "product_offer_ID",
+          "unique": false,
+          "columns": [
+            "product_offer_ID"
+          ]
+        }
+      ],
+      "fks": [
+        {
+          "name": "tbd_cart_items_ibfk_1",
+          "columns": [
+            "cart_ID"
+          ],
+          "table": "tb_carts",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        }
+      ],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "cart_ID",
+        "product_offer_ID"
+      ]
+    },
+    {
+      "name": "tbd_order_items",
+      "columns": [
+        {
+          "name": "ID",
+          "decl": "int unsigned NOT NULL AUTO_INCREMENT",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "seller_order_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "fk"
+          ]
+        },
+        {
+          "name": "product_offer_ID",
+          "decl": "int unsigned NOT NULL"
+        },
+        {
+          "name": "product_name",
+          "decl": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL"
+        },
+        {
+          "name": "quantity",
+          "decl": "int unsigned NOT NULL"
+        },
+        {
+          "name": "unit_price",
+          "decl": "decimal(12,2) NOT NULL"
+        },
+        {
+          "name": "subtotal",
+          "decl": "decimal(12,2) GENERATED ALWAYS AS ((`quantity` * `unit_price`)) STORED"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "seller_order_ID",
+          "unique": false,
+          "columns": [
+            "seller_order_ID"
+          ]
+        },
+        {
+          "name": "product_offer_ID",
+          "unique": false,
+          "columns": [
+            "product_offer_ID"
+          ]
+        }
+      ],
+      "fks": [
+        {
+          "name": "tbd_order_items_ibfk_1",
+          "columns": [
+            "seller_order_ID"
+          ],
+          "table": "tb_seller_orders",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        }
+      ],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "ID"
+      ]
+    },
+    {
+      "name": "tbd_products_categories",
+      "columns": [
+        {
+          "name": "category_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "pk",
+            "fk"
+          ]
+        },
+        {
+          "name": "product_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "pk",
+            "fk"
+          ]
+        },
+        {
+          "name": "status",
+          "decl": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "decl": "datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "fk_product",
+          "unique": false,
+          "columns": [
+            "product_ID"
+          ]
+        }
+      ],
+      "fks": [
+        {
+          "name": "fk_category",
+          "columns": [
+            "category_ID"
+          ],
+          "table": "tbc_categories",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        },
+        {
+          "name": "fk_product",
+          "columns": [
+            "product_ID"
+          ],
+          "table": "tb_products",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        }
+      ],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "category_ID",
+        "product_ID"
+      ]
+    },
+    {
+      "name": "tbd_products_users_providers",
+      "columns": [
+        {
+          "name": "user_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "pk",
+            "fk"
+          ]
+        },
+        {
+          "name": "product_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "pk",
+            "fk"
+          ]
+        },
+        {
+          "name": "type_ownership",
+          "decl": "enum('Owner','Reseller','Distributor') DEFAULT NULL"
+        },
+        {
+          "name": "status",
+          "decl": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "avalaible_date",
+          "decl": "datetime NOT NULL"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "fk_products2",
+          "unique": false,
+          "columns": [
+            "product_ID"
+          ]
+        }
+      ],
+      "fks": [
+        {
+          "name": "fk_products2",
+          "columns": [
+            "product_ID"
+          ],
+          "table": "tb_products",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        },
+        {
+          "name": "fk_user1",
+          "columns": [
+            "user_ID"
+          ],
+          "table": "tb_users",
+          "references": [
+            "ID"
+          ],
+          "delete": "",
+          "update": ""
+        }
+      ],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "user_ID",
+        "product_ID"
+      ]
+    },
+    {
+      "name": "tbd_users_wishlist_products",
+      "columns": [
+        {
+          "name": "user_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "product_ID",
+          "decl": "int unsigned NOT NULL",
+          "keys": [
+            "pk"
+          ]
+        },
+        {
+          "name": "status",
+          "decl": "bit(1) NOT NULL DEFAULT b'1'"
+        },
+        {
+          "name": "creation_date",
+          "decl": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "last_update",
+          "decl": "datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP"
+        }
+      ],
+      "indexes": [],
+      "fks": [],
+      "checks": [],
+      "engine": "InnoDB",
+      "pk": [
+        "user_ID",
+        "product_ID"
+      ]
+    }
+  ],
+  "counts": {
+    "tb_carts": 0,
+    "tb_logs": 43787,
+    "tb_payment_transactions": 0,
+    "tb_payments": 0,
+    "tb_products": 15010,
+    "tb_seller_orders": 0,
+    "tb_users": 8,
+    "tbb_orders": 0,
+    "tbc_categories": 100,
+    "tbd_cart_items": 0,
+    "tbd_order_items": 0,
+    "tbd_products_categories": 28656,
+    "tbd_products_users_providers": 0,
+    "tbd_users_wishlist_products": 0
+  },
+  "relationships": [
+    {
+      "id": "rel_tb_carts_1",
+      "from": "tb_carts",
+      "to": "tb_users",
+      "label": "tb_carts_ibfk_1: user_ID → ID",
+      "constraint": "tb_carts_ibfk_1",
+      "columns": [
+        "user_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "one",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "rel_tb_payment_transactions_1",
+      "from": "tb_payment_transactions",
+      "to": "tb_payments",
+      "label": "tb_payment_transactions_ibfk_1: payment_ID → ID",
+      "constraint": "tb_payment_transactions_ibfk_1",
+      "columns": [
+        "payment_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "rel_tb_payments_1",
+      "from": "tb_payments",
+      "to": "tbb_orders",
+      "label": "fk_payments_order: order_ID → ID",
+      "constraint": "fk_payments_order",
+      "columns": [
+        "order_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "rel_tb_seller_orders_1",
+      "from": "tb_seller_orders",
+      "to": "tbb_orders",
+      "label": "fk_seller_orders_order: order_ID → ID",
+      "constraint": "fk_seller_orders_order",
+      "columns": [
+        "order_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "rel_tb_seller_orders_2",
+      "from": "tb_seller_orders",
+      "to": "tb_users",
+      "label": "fk_seller_orders_seller: seller_ID → ID",
+      "constraint": "fk_seller_orders_seller",
+      "columns": [
+        "seller_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "rel_tbb_orders_1",
+      "from": "tbb_orders",
+      "to": "tb_users",
+      "label": "fk_user_2: User_ID → ID",
+      "constraint": "fk_user_2",
+      "columns": [
+        "User_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "rel_tbc_categories_1",
+      "from": "tbc_categories",
+      "to": "tbc_categories",
+      "label": "fk_superior_category: sup_id_category → ID",
+      "constraint": "fk_superior_category",
+      "columns": [
+        "sup_id_category"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": true,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": true,
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "rel_tbd_cart_items_1",
+      "from": "tbd_cart_items",
+      "to": "tb_carts",
+      "label": "tbd_cart_items_ibfk_1: cart_ID → ID",
+      "constraint": "tbd_cart_items_ibfk_1",
+      "columns": [
+        "cart_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "rel_tbd_order_items_1",
+      "from": "tbd_order_items",
+      "to": "tb_seller_orders",
+      "label": "tbd_order_items_ibfk_1: seller_order_ID → ID",
+      "constraint": "tbd_order_items_ibfk_1",
+      "columns": [
+        "seller_order_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": false,
+      "variant": "dashed"
+    },
+    {
+      "id": "rel_tbd_products_categories_1",
+      "from": "tbd_products_categories",
+      "to": "tbc_categories",
+      "label": "fk_category: category_ID → ID",
+      "constraint": "fk_category",
+      "columns": [
+        "category_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "rel_tbd_products_categories_2",
+      "from": "tbd_products_categories",
+      "to": "tb_products",
+      "label": "fk_product: product_ID → ID",
+      "constraint": "fk_product",
+      "columns": [
+        "product_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "rel_tbd_products_users_providers_1",
+      "from": "tbd_products_users_providers",
+      "to": "tb_products",
+      "label": "fk_products2: product_ID → ID",
+      "constraint": "fk_products2",
+      "columns": [
+        "product_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": true
+    },
+    {
+      "id": "rel_tbd_products_users_providers_2",
+      "from": "tbd_products_users_providers",
+      "to": "tb_users",
+      "label": "fk_user1: user_ID → ID",
+      "constraint": "fk_user1",
+      "columns": [
+        "user_ID"
+      ],
+      "references": [
+        "ID"
+      ],
+      "onDelete": "",
+      "onUpdate": "",
+      "optional": false,
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "fromOptional": false,
+      "identifying": true
+    }
+  ],
+  "inferredRelationships": [],
+  "totals": {
+    "tables": 14,
+    "columns": 100,
+    "foreignKeys": 13,
+    "primaryKeys": 14,
+    "indexes": 17,
+    "rows": 87561,
+    "availableCounts": 14,
+    "unavailableCounts": 0
+  },
+  "objects": {
+    "procedures": [
+      "sp_soft_delete_user"
+    ],
+    "views": [],
+    "triggers": [],
+    "functions": [],
+    "events": [],
+    "checks": []
+  },
+  "warnings": [
+    "Los conteos representan las filas presentes en las sentencias INSERT del respaldo, no el estado actual de un servidor MySQL.",
+    "El archivo se analizó como texto; no se ejecutaron sentencias SQL."
+  ]
+}

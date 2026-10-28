@@ -52,7 +52,8 @@ GRANT SELECT, INSERT, UPDATE
 ON db_test.tb_users 
 TO 'support';
 
-GRANT SELECT, INSERT, UPDATE 
+/*El support no puede insertar productos*/
+GRANT SELECT, UPDATE 
 ON db_test.tb_products 
 TO 'support';
 
