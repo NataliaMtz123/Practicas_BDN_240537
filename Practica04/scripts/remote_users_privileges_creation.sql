@@ -86,10 +86,18 @@ ON db_test.tb_carts
 TO 'buyer';
 
 GRANT SELECT,INSERT,UPDATE
-ON db_test.tbd_carts_items
+ON db_test.tb_payments
 TO 'buyer';
 
 GRANT SELECT,INSERT
+ON db_test.tb_payment_transactions
+TO 'buyer';
+
+GRANT SELECT,INSERT,UPDATE
+ON db_test.tbd_carts_items
+TO 'buyer';
+
+GRANT SELECT,INSERT,UPDATE
 ON db_test.tb_buyer_orders
 TO 'buyer';
 
@@ -97,9 +105,46 @@ GRANT SELECT,INSERT,UPDATE
 ON db_test.tbd_carts_items
 TO 'buyer';
 
+GRANT SELECT
+ON db_test.tb_products
+TO 'buyer';
+
+GRANT SELECT
+ON db_test.tbd_products_users_providers
+TO 'buyer'@'%';
+
+GRANT SELECT, INSERT
+ON db_test.tb_user_addresses
+TO 'buyer'@'%';
+
+GRANT SELECT, INSERT
+ON db_test.tbd_address_components
+TO 'buyer'@'%';
+
+GRANT SELECT, INSERT
+ON db_test.tbd_order_items
+TO 'buyer';
+
+GRANT SELECT, INSERT
+ON db_test.tb_buyer_orders
+TO 'buyer';
+
 GRANT SELECT,INSERT,UPDATE
 ON db_test.tbd_users_wishlist_products
 TO 'buyer';
+
+GRANT SELECT,INSERT
+ON db_test.tb_payment_methods
+TO 'buyer';
+
+GRANT SELECT,INSERT
+ON db_test.tbd_user_payment_methods
+TO 'buyer';
+
+GRANT SELECT,INSERT
+ON db_test.tbc_payment_methods_types
+TO 'buyer';
+
 
 GRANT INSERT
 on db_test.tb_people
