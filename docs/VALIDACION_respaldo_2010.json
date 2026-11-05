@@ -1,0 +1,231 @@
+{
+  "source": "C:\\Users\\ti_la\\Documents\\Practicas_BDN_240537\\Practica03\\backups\\Respaldo_2010.sql",
+  "sha256": "5f005b0183b18107d8d0a29966ef576f131498e232cda5ff98510583f28d4d49",
+  "stats": {
+    "Tablas identificadas": 15,
+    "Tablas documentadas": 15,
+    "Columnas identificadas": 111,
+    "Columnas documentadas": 111,
+    "Claves primarias": 15,
+    "Claves foráneas": 13,
+    "Relaciones identificadas": 18,
+    "Relaciones explícitas": 13,
+    "Relaciones lógicas inferidas": 5,
+    "Índices identificados": 33,
+    "Objetos adicionales": 57,
+    "Elementos pendientes": 10
+  },
+  "checks": "passed",
+  "tables": [
+    {
+      "name": "tb_buyer_orders",
+      "line": 27,
+      "columns": [
+        "ID",
+        "order_ID",
+        "seller_ID",
+        "subtotal",
+        "shipping_cost",
+        "fulfillment_status",
+        "creation_date",
+        "last_update"
+      ]
+    },
+    {
+      "name": "tb_carts",
+      "line": 169,
+      "columns": [
+        "ID",
+        "user_ID",
+        "status",
+        "creation_date",
+        "last_update"
+      ]
+    },
+    {
+      "name": "tb_logs",
+      "line": 286,
+      "columns": [
+        "ID",
+        "table_name",
+        "operation",
+        "db_users",
+        "description",
+        "operation_date",
+        "operation_status"
+      ]
+    },
+    {
+      "name": "tb_products",
+      "line": 322,
+      "columns": [
+        "ID",
+        "SKU",
+        "name",
+        "description",
+        "current_price",
+        "current_stock",
+        "status",
+        "creation_date",
+        "last_update"
+      ]
+    },
+    {
+      "name": "tb_user_addresses",
+      "line": 461,
+      "columns": [
+        "ID",
+        "user_ID",
+        "address_label",
+        "recipient_name",
+        "recipient_phone",
+        "delivery_instructions",
+        "latitude",
+        "longitude",
+        "is_default",
+        "status",
+        "creation_date",
+        "last_update"
+      ]
+    },
+    {
+      "name": "tb_users",
+      "line": 718,
+      "columns": [
+        "ID",
+        "email",
+        "nick",
+        "password",
+        "creation_date",
+        "last_update",
+        "last_login",
+        "status"
+      ]
+    },
+    {
+      "name": "tbc_categories",
+      "line": 893,
+      "columns": [
+        "ID",
+        "name",
+        "description",
+        "sup_id_category",
+        "status",
+        "creation_date",
+        "last_update"
+      ]
+    },
+    {
+      "name": "tbc_payment_methods_types",
+      "line": 1021,
+      "columns": [
+        "ID",
+        "code",
+        "description",
+        "status",
+        "creation_date",
+        "last_update"
+      ]
+    },
+    {
+      "name": "tbd_address_components",
+      "line": 1148,
+      "columns": [
+        "ID",
+        "address_ID",
+        "value",
+        "component_type",
+        "status",
+        "address_sup_ID",
+        "creation_date",
+        "last_update"
+      ]
+    },
+    {
+      "name": "tbd_carts_items",
+      "line": 1336,
+      "columns": [
+        "cart_ID",
+        "provider_ID",
+        "product_ID",
+        "quantity",
+        "creation_date"
+      ]
+    },
+    {
+      "name": "tbd_order_items",
+      "line": 1457,
+      "columns": [
+        "ID",
+        "seller_order_ID",
+        "product_offer_ID",
+        "product_name",
+        "quantity",
+        "unit_price",
+        "subtotal",
+        "creation_date"
+      ]
+    },
+    {
+      "name": "tbd_products_categories",
+      "line": 1608,
+      "columns": [
+        "category_ID",
+        "product_ID",
+        "status",
+        "creation_date",
+        "last_update"
+      ]
+    },
+    {
+      "name": "tbd_products_users_providers",
+      "line": 1735,
+      "columns": [
+        "user_ID",
+        "product_ID",
+        "type_ownership",
+        "status",
+        "avalaible_date",
+        "creation_date",
+        "last_update"
+      ]
+    },
+    {
+      "name": "tbd_user_payment_methods",
+      "line": 1910,
+      "columns": [
+        "ID",
+        "user_ID",
+        "payment_method_type_ID",
+        "provider",
+        "provider_method_ref",
+        "label",
+        "last_four",
+        "is_default",
+        "status",
+        "creation_date",
+        "last_update"
+      ]
+    },
+    {
+      "name": "tbd_users_wishlist_products",
+      "line": 2082,
+      "columns": [
+        "user_ID",
+        "product_ID",
+        "status",
+        "creation_date",
+        "last_update"
+      ]
+    }
+  ],
+  "absent_audit_tables": [
+    "w_trazabilidad_buyer_orders",
+    "w_trazabilidad_carts",
+    "w_trazabilidad_carts_items",
+    "w_trazabilidad_order_items",
+    "w_trazabilidad_payment_methods_types",
+    "w_trazabilidad_user_payment_methods",
+    "w_trazabilidad_users_wishlist_products"
+  ]
+}

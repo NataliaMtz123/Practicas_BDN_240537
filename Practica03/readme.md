@@ -28,6 +28,10 @@ El diccionario de datos se encuentra publicado en GitHub Pages para su consulta.
 
 **URL:** https://nataliamtz123.github.io/Practicas_BDN_240537/
 
+# 🗄️ Modelo Entidad-Relación Extendido (EER)
+
+**[📊 Consultar Modelo Entidad-Relación Extendido](https://nataliamtz123.github.io/Practicas_BDN_240537/modelo-eer/)**
+
 ---
 
 # Práctica 02 - Base de Datos `db_test`
