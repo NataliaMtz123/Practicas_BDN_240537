@@ -30,7 +30,8 @@ El diccionario de datos se encuentra publicado en GitHub Pages para su consulta.
 
 # 🗄️ Modelo Entidad-Relación Extendido (EER)
 
-**[📊 Consultar Modelo Entidad-Relación Extendido](https://nataliamtz123.github.io/Practicas_BDN_240537/modelo-eer/)**
+**[📊 Consultar Modelo Entidad-Relación Extendido]( http://127.0.0.1:5173/Practicas_BDN_240537/modelo-eer-2710//)**
+
 
 ---
 
