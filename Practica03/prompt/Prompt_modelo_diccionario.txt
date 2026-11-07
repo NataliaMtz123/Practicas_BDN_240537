@@ -1,0 +1,562 @@
+# PROMPT MAESTRO PARA ARCHIFY
+## DICCIONARIO DE DATOS + MODELO ENTIDAD-RELACIÓN EXTENDIDO (EER) + DOCUMENTACIÓN DE TRIGGERS Y VISTAS
+
+### 1. OBJETIVO GENERAL
+
+Actúa como un Arquitecto Senior de Bases de Datos, especialista en MySQL 8.0, Ingeniería Inversa, Modelado Entidad-Relación Extendido, Documentación Técnica, Desarrollo Full Stack y Diseño UI/UX.
+
+Analiza exhaustivamente el archivo:
+
+**`Respaldo_2710.sql`**
+
+Construye una **única aplicación web interactiva, moderna, profesional y funcional** que integre el diccionario de datos, el modelo EER, la documentación de triggers, las vistas, las relaciones, las estadísticas y la exportación a PDF.
+
+La base de datos debe contener, según los requisitos proporcionados:
+
+- **25 tablas.**
+- **72 triggers.**
+- **28 vistas.**
+
+Estas cantidades son criterios de validación obligatorios. Debes comprobarlas contra el contenido real del respaldo.
+
+Si los conteos detectados no coinciden, informa las diferencias, identifica los objetos faltantes o adicionales y no inventes elementos para alcanzar las cantidades esperadas.
+
+No generes aplicaciones independientes. Toda la documentación debe encontrarse dentro de un único proyecto web.
+
+### 2. ANÁLISIS DEL RESPALDO SQL
+
+Lee completamente `Respaldo_2710.sql` sin ejecutar sus instrucciones.
+
+Identifica:
+
+- Nombre real de la base de datos.
+- Las 25 tablas esperadas.
+- Todas las columnas y sus tipos de datos.
+- Claves primarias y foráneas.
+- Índices y restricciones.
+- Relaciones y cardinalidades.
+- Los 72 triggers esperados.
+- Las 28 vistas esperadas.
+- Procedimientos y funciones almacenadas, si existen.
+- Registros verificables por tabla.
+
+Analiza CREATE TABLE, ALTER TABLE, CREATE VIEW, CREATE TRIGGER, CREATE PROCEDURE, CREATE FUNCTION y las instrucciones relacionadas.
+
+Considera los delimitadores personalizados de MySQL y las definiciones de objetos almacenados.
+
+No inventes información ni ejecutes el SQL.
+
+### 3. ESTRUCTURA DEL DOCUMENTO UNIFICADO
+
+La aplicación debe contener:
+
+1. Portada académica y profesional.
+2. Índice interactivo.
+3. Descripción general de la base de datos.
+4. Dashboard estadístico.
+5. Diccionario de las 25 tablas.
+6. Clasificación detallada de atributos.
+7. Dominios y notación formal.
+8. Modelo EER interactivo.
+9. Relaciones y cardinalidades.
+10. Documentación de los 72 triggers.
+11. Documentación de las 28 vistas.
+12. Índices y restricciones.
+13. Procedimientos y funciones, si existen.
+14. Conteo de registros.
+15. Conclusiones técnicas.
+16. Exportación del documento.
+
+Todas las secciones deben estar conectadas mediante navegación interna.
+
+### 4. DICCIONARIO DE DATOS DE LAS 25 TABLAS
+
+Documenta individualmente cada una de las 25 tablas esperadas.
+
+Para cada tabla incluye:
+
+- Nombre exacto.
+- Descripción general detallada.
+- Propósito funcional.
+- Función dentro del sistema.
+- Número total de columnas.
+- Clave primaria.
+- Claves foráneas.
+- Índices.
+- Restricciones.
+- Relaciones.
+- Cantidad verificable de registros.
+
+Para cada columna incluye:
+
+- Posición ordinal.
+- Nombre exacto.
+- Descripción funcional.
+- Descripción técnica.
+- Tipo de dato SQL.
+- Longitud.
+- Precisión y escala.
+- NULL / NOT NULL.
+- Valor DEFAULT.
+- AUTO_INCREMENT.
+- PRIMARY KEY.
+- FOREIGN KEY.
+- UNIQUE.
+- CHECK.
+- Índices asociados.
+- Tabla y columna referenciadas.
+- Dominio técnico y funcional.
+- Clasificación conceptual.
+- Naturaleza del dato.
+- Notación formal.
+
+No omitas ninguna columna del respaldo.
+
+### 5. CLASIFICACIÓN DE ATRIBUTOS
+
+Clasifica individualmente los atributos de las 25 tablas según:
+
+**Cantidad de valores**
+- Monovalorado.
+- Multivalorado.
+
+**Composición**
+- Simple.
+- Compuesto.
+
+**Almacenamiento**
+- Almacenado.
+- Derivado.
+
+**Obligatoriedad**
+- Obligatorio.
+- Opcional.
+
+**Función**
+- Clave primaria.
+- Clave foránea.
+- Clave candidata.
+- No clave.
+
+**Naturaleza**
+- Cualitativa nominal.
+- Cualitativa ordinal.
+- Cuantitativa discreta.
+- Cuantitativa continua.
+- Temporal, cuando corresponda.
+
+Incluye una justificación breve para cada clasificación.
+
+Si una clasificación no puede verificarse, márcala como inferida o pendiente de validación.
+
+### 6. DOMINIOS Y NOTACIÓN FORMAL
+
+Para cada columna identifica:
+
+- Dominio técnico.
+- Dominio funcional.
+- Valores permitidos.
+- Rangos.
+- Longitudes.
+- Restricciones.
+- Valores predeterminados.
+
+Representa cada tabla mediante:
+
+**R(A1, A2, A3, ..., An)**
+
+Donde R es el nombre de la tabla y A1...An son sus atributos en orden ordinal.
+
+Incluye las claves y dependencias referenciales.
+
+### 7. MODELO ENTIDAD-RELACIÓN EXTENDIDO
+
+Construye un diagrama EER interactivo con las 25 tablas esperadas.
+
+Cada entidad debe mostrar:
+
+- Nombre.
+- Tipo de entidad.
+- Total de columnas.
+- Número de registros verificables.
+- Clave primaria.
+- Claves foráneas.
+- Atributos.
+- Relaciones.
+
+Utiliza notación Crow's Foot.
+
+Representa cuando exista evidencia:
+
+- Entidades fuertes y débiles.
+- Entidades asociativas.
+- Relaciones identificadoras y no identificadoras.
+- Relaciones 1:1.
+- Relaciones 1:N.
+- Relaciones N:M.
+- Autorrelaciones.
+- Especialización y generalización.
+
+Diferencia relaciones declaradas mediante FOREIGN KEY de relaciones inferidas.
+
+No inventes relaciones ni jerarquías.
+
+### 8. INTERACTIVIDAD Y ANIMACIONES
+
+El diagrama debe permitir:
+
+1. Arrastrar entidades.
+2. Acercar y alejar mediante zoom.
+3. Desplazamiento horizontal y vertical.
+4. Centrado automático.
+5. Reorganización de tablas.
+6. Expansión de atributos.
+7. Selección de entidades.
+8. Resaltado de relaciones.
+9. Búsqueda de tablas y columnas.
+10. Filtros.
+11. Visualización de dependencias.
+12. Minimapa.
+13. Restablecimiento de la vista.
+
+Implementa animaciones suaves para selección, expansión, conexiones y navegación.
+
+Las conexiones deben permanecer unidas al mover las tablas.
+
+### 9. DOCUMENTACIÓN COMPLETA DE LOS 72 TRIGGERS
+
+Crea una sección exclusiva para documentar los 72 triggers esperados.
+
+Para cada trigger incluye:
+
+- Nombre exacto.
+- Tabla asociada.
+- Evento: INSERT, UPDATE o DELETE.
+- Momento de ejecución: BEFORE o AFTER.
+- Descripción funcional.
+- Propósito.
+- Condiciones.
+- Columnas afectadas.
+- Referencias OLD y NEW, cuando correspondan.
+- Operaciones realizadas.
+- Tablas modificadas o consultadas.
+- Relación con mecanismos de auditoría o trazabilidad.
+- Dependencias.
+- Código SQL original, cuando pueda mostrarse sin exponer información sensible.
+
+Organiza los triggers por tabla y evento.
+
+Incluye un buscador y filtros por:
+
+- Nombre.
+- Tabla.
+- Evento.
+- Momento de ejecución.
+- Función.
+
+Agrega una visualización de dependencias que permita identificar qué tablas participan en cada trigger.
+
+Incluye estadísticas de triggers por tabla y tipo de evento.
+
+No generes triggers faltantes ni modifiques sus definiciones.
+
+### 10. DOCUMENTACIÓN COMPLETA DE LAS 28 VISTAS
+
+Crea una sección exclusiva para las 28 vistas esperadas.
+
+Para cada vista incluye:
+
+- Nombre exacto.
+- Descripción general.
+- Propósito funcional.
+- Columnas resultantes.
+- Tipo de dato de cada columna, cuando pueda determinarse.
+- Tablas de origen.
+- Relaciones utilizadas.
+- Condiciones WHERE.
+- Agrupaciones GROUP BY.
+- Ordenamientos ORDER BY.
+- Funciones agregadas.
+- JOIN utilizados.
+- Dependencias con otras vistas.
+- Código SQL original, cuando sea seguro mostrarlo.
+
+Identifica cuáles vistas corresponden a auditoría, trazabilidad, reportes, estadísticas u otras funciones, siempre que pueda justificarse.
+
+Incluye un diagrama de dependencias entre vistas y tablas.
+
+No confundas vistas con tablas físicas ni incluyas las vistas en el conteo de las 25 tablas.
+
+### 11. INTEGRACIÓN ENTRE DICCIONARIO, EER, TRIGGERS Y VISTAS
+
+Implementa navegación bidireccional.
+
+Al seleccionar una tabla en el EER, debe mostrarse su ficha completa del diccionario.
+
+Al seleccionar una tabla en el diccionario, debe localizarse y resaltarse en el EER.
+
+Desde cada tabla debe ser posible consultar:
+
+- Sus columnas.
+- Sus relaciones.
+- Sus triggers asociados.
+- Las vistas que dependen de ella.
+- Sus índices.
+- Sus restricciones.
+- Su conteo de registros.
+
+Desde un trigger o una vista debe ser posible navegar hacia las tablas relacionadas.
+
+Todos los módulos deben compartir los mismos metadatos.
+
+### 12. CONTEO DE REGISTROS
+
+Calcula los registros por tabla cuando el respaldo contenga información suficiente.
+
+Analiza INSERT INTO, REPLACE INTO, DELETE, UPDATE, TRUNCATE y demás operaciones relevantes.
+
+Distingue:
+
+- Conteo exacto reconstruido.
+- Conteo parcial.
+- Conteo obtenido de una base de datos conectada.
+- Conteo no disponible.
+
+No confundas AUTO_INCREMENT con el número de registros.
+
+Si no es posible verificar el conteo, muestra:
+
+**Conteo no disponible en el respaldo.**
+
+No inventes cantidades.
+
+### 13. DASHBOARD ESTADÍSTICO
+
+El dashboard debe mostrar:
+
+- 25 tablas esperadas y cantidad realmente detectada.
+- 72 triggers esperados y cantidad realmente detectada.
+- 28 vistas esperadas y cantidad realmente detectada.
+- Total de columnas.
+- Total de claves primarias.
+- Total de claves foráneas.
+- Total de relaciones explícitas.
+- Total de relaciones inferidas.
+- Total de índices.
+- Total de procedimientos.
+- Total de funciones.
+- Total de registros verificables.
+- Tablas con más registros.
+- Tablas con más relaciones.
+- Distribución de triggers por evento.
+- Distribución de vistas por función.
+
+Utiliza tarjetas estadísticas, gráficas y tablas interactivas.
+
+### 14. DISEÑO VISUAL Y TECNOLOGÍAS
+
+Utiliza, cuando sean compatibles:
+
+- React.
+- Vite.
+- TypeScript.
+- Tailwind CSS.
+- React Flow.
+- Motion.
+- Dagre o ELK.js.
+- Lucide Icons.
+
+Diseña una interfaz con:
+
+- Barra superior.
+- Menú lateral.
+- Buscador global.
+- Panel central interactivo.
+- Panel de detalles.
+- Dashboard.
+- Tema claro y oscuro.
+- Diseño responsivo.
+- Animaciones fluidas.
+
+Prioriza legibilidad, accesibilidad y rendimiento.
+
+### 15. EXPORTACIÓN A PDF Y OTROS FORMATOS
+
+Implementa:
+
+1. Exportación del diccionario de datos a PDF.
+2. Exportación del modelo EER a PNG o SVG.
+3. Exportación de metadatos a JSON.
+4. Exportación de un PDF unificado.
+
+El PDF unificado debe contener:
+
+- Portada.
+- Índice.
+- Descripción general.
+- Dashboard estadístico.
+- Diccionario de las 25 tablas.
+- Todas las columnas y clasificaciones.
+- Dominios.
+- Notación formal.
+- Modelo EER.
+- Relaciones y cardinalidades.
+- Documentación de los 72 triggers.
+- Documentación de las 28 vistas.
+- Índices y restricciones.
+- Procedimientos y funciones existentes.
+- Conclusiones técnicas.
+
+No omitas objetos por limitaciones de espacio.
+
+Si el documento es extenso, utiliza varias páginas, índices y saltos de página adecuados.
+
+El diagrama EER debe exportarse con una escala legible.
+
+### 16. PREPARACIÓN PARA GITHUB PAGES
+
+El proyecto debe quedar preparado para publicarse posteriormente en GitHub Pages.
+
+**Actualmente no existe una URL, repositorio ni ruta definitiva de publicación.**
+
+No inventes ni configures una dirección de publicación.
+
+La aplicación debe:
+
+- Funcionar como sitio estático.
+- No requerir MySQL durante su ejecución.
+- Utilizar metadatos JSON previamente generados.
+- No necesitar un backend en producción.
+- Ser compatible con rutas relativas.
+- Utilizar navegación compatible con alojamiento estático.
+- Compilar correctamente con Vite.
+- Permitir configurar posteriormente la ruta base.
+
+Configura inicialmente Vite:
+
+```ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  base: './',
+});
+```
+
+No publiques automáticamente el proyecto.
+
+### 17. ESTRUCTURA DEL PROYECTO
+
+Organiza el código de manera modular:
+
+```text
+diccionario-eer/
+│
+├── index.html
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+├── src/
+│   ├── main.tsx
+│   ├── App.tsx
+│   ├── components/
+│   ├── pages/
+│   │   ├── Inicio.tsx
+│   │   ├── Diccionario.tsx
+│   │   ├── ModeloEER.tsx
+│   │   ├── Triggers.tsx
+│   │   ├── Vistas.tsx
+│   │   └── Estadisticas.tsx
+│   ├── data/
+│   │   ├── tablas.json
+│   │   ├── columnas.json
+│   │   ├── relaciones.json
+│   │   ├── triggers.json
+│   │   ├── vistas.json
+│   │   └── estadisticas.json
+│   └── styles/
+│
+├── public/
+└── README.md
+```
+
+La compilación debe generar una carpeta `dist/` con todos los recursos estáticos.
+
+### 18. EJECUCIÓN LOCAL
+
+Prepara el proyecto para ejecutarse mediante:
+
+```bash
+npm install
+npm run dev
+```
+
+Y compilarse mediante:
+
+```bash
+npm run build
+```
+
+Incluye instrucciones completas en README.md.
+
+### 19. SEGURIDAD Y PRIVACIDAD
+
+No ejecutes automáticamente instrucciones SQL.
+
+No modifiques el respaldo original.
+
+No publiques contraseñas, hashes, tokens, datos personales ni registros originales.
+
+Los archivos JSON públicos deben contener exclusivamente metadatos y estadísticas que puedan divulgarse de manera segura.
+
+No incluyas credenciales en el frontend.
+
+### 20. VALIDACIÓN FINAL OBLIGATORIA
+
+Antes de entregar, comprueba:
+
+1. Que el respaldo se haya leído completamente.
+2. Que se hayan identificado las 25 tablas esperadas o se explique cualquier diferencia.
+3. Que se hayan identificado los 72 triggers esperados o se explique cualquier diferencia.
+4. Que se hayan identificado las 28 vistas esperadas o se explique cualquier diferencia.
+5. Que todas las columnas estén documentadas.
+6. Que los atributos tengan sus clasificaciones justificadas.
+7. Que las claves y restricciones coincidan con el SQL.
+8. Que las relaciones estén representadas correctamente.
+9. Que el modelo EER sea interactivo.
+10. Que la navegación entre diccionario, EER, triggers y vistas funcione.
+11. Que los conteos sean verificables o estén marcados como no disponibles.
+12. Que las animaciones funcionen.
+13. Que las exportaciones funcionen.
+14. Que el proyecto compile sin errores.
+15. Que esté preparado para GitHub Pages sin una ruta definitiva.
+16. Que no contenga información sensible en sus archivos públicos.
+
+Genera un reporte final de validación con los objetos esperados, los realmente detectados, las diferencias, los archivos generados y los resultados de las pruebas.
+
+### 21. INSTRUCCIÓN FINAL
+
+Analiza exhaustivamente `Respaldo_2810.sql` y construye una **única aplicación web interactiva** que integre:
+
+- Diccionario de datos de las 25 tablas esperadas.
+- Documentación de los 72 triggers esperados.
+- Documentación de las 28 vistas esperadas.
+- Clasificación conceptual de todos los atributos.
+- Naturaleza cualitativa o cuantitativa.
+- Dominios y notación formal.
+- Modelo entidad-relación extendido.
+- Relaciones y cardinalidades.
+- Conteos de registros verificables.
+- Animaciones fluidas.
+- Búsqueda y filtros.
+- Exportación a PDF.
+- Compatibilidad con GitHub Pages.
+
+**No entregues únicamente una maqueta, un diagrama estático o una explicación teórica.**
+
+Entrega una aplicación funcional, con todos los objetos que realmente existan en el respaldo, y preparada para una futura publicación en GitHub Pages.
+
+No configures todavía una URL ni un repositorio.
+
+**RESULTADO ESPERADO:** un documento digital único, completo, interactivo y profesional, que permita estudiar y explorar la estructura de la base de datos, sus 25 tablas, 72 triggers y 28 vistas esperadas, verificando cada uno de estos elementos contra el respaldo original.
