@@ -22,15 +22,10 @@ Se generó el diccionario de datos de la base de datos `db_test` mediante Archif
 
 El diccionario de datos se encuentra publicado en GitHub Pages para su consulta.
 
-### 🔗 Enlace al Diccionario de Datos
+### 🔗 Enlace al Diccionario de Datos y Modelo Entidad-Relación Extendido (EER)
 
-**[📖 Consultar Diccionario de Datos Actualizado](https://nataliamtz123.github.io/Practicas_BDN_240537/)**
+**[📖 Consultar Diccionario de Datos Actualizado y Modelo Entidad-Relación Extendido (EER)]( https://nataliamtz123.github.io/Practicas_BDN_240537/)**
 
-**URL:** https://nataliamtz123.github.io/Practicas_BDN_240537/
-
-# 🗄️ Modelo Entidad-Relación Extendido (EER)
-
-**[📊 Consultar Modelo Entidad-Relación Extendido]( http://127.0.0.1:5173/Practicas_BDN_240537/modelo-eer-2710//)**
 
 
 ---
