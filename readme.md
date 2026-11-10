@@ -5,8 +5,11 @@ Periodo: Septiembre - Diciembre 2026
 
 ---
 
-|ID|Numero de Práctica|Nombre de la Práctica|Potenciador|Estatus
-|---|---|---|---|---|
-|1.|Práctica 02|Conexión Remota en MYSQL|42|💚Concluida|
-|2.|Conexiones Remotas para Bases de Datos SQL 1| Crear y administrar usuarios y privilegios para conexiones desde internet o redes locales |60|💚Concluida|
-|3.|Práctica 03|Manipulación de datos en conexiones remotas|100|💚Concluida|
+
+# Tabla de Prácticas de la Materia
+
+| No. | Nombre | Descripción | Potenciador | Estatus |
+|-----|--------|-------------|-------------|---------|
+| 1. | Metodología de Evaluación de la Materia | Transcribir en libreta y comprender la metodología y fechas de evaluación de la asignatura | 42 | 💚 Concluida |
+| 2. | Conexiones Remotas para Bases de Datos SQL | Crear y administrar usuarios y privilegios para conexiones desde internet o redes locales | 60 | 💚 Concluida |
+| 3. | [Manipulación de Datos en Conexiones Remotas a Bases de Datos Relacionales](Practica03/readme.md) | Crear Procedimientos Almacenados, Funciones, Tablas Derivada, Importación de Datos en el Contexto de E-Commerce | 100 | 💚 Concluida |
