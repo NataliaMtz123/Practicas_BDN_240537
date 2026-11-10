@@ -15,7 +15,7 @@
 | 2 | Conexiones Remotas para Bases de Datos SQL | Crear y administrar usuarios y privilegios para conexiones desde internet o redes locales. | 60 | 💚 Concluida |
 | 3 | Manipulación de Datos en Conexiones Remotas a Bases de Datos Relacionales| Crear procedimientos almacenados, funciones, tablas derivadas e importar datos en el contexto de E-Commerce. | 100 | 💚 Concluida |
 
-> El enlace de la práctica 3 apunta a este mismo README, sin crear carpetas adicionales.
+
 
 ---
 
