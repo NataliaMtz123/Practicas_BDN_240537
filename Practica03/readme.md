@@ -1,85 +1,146 @@
+# Práctica 03 — Manipulación de datos, relaciones, procedimientos, funciones y eventos en conexiones remotas
 
-# Documentacion de la Práctica 03. Manipulacion de datos, Relaciones, Procedimientos, Funciones y Eventos en Conexiones Remotas
-
-# Prácticas de la asignatura Optativa I: Bases De Datos en la Nube
-## Ing. en Tecnologías de la Información e Innovación Digital
-### Docente: M.T.I Marco A. Ramírez Hernandez
-Periodo: Septiembre - Diciembre 2026
+# Prácticas de la asignatura Optativa I: Bases de Datos en la Nube
+## Ingeniería en Tecnologías de la Información e Innovación Digital
+### Docente: M.T.I. Marco A. Ramírez Hernández
+**Periodo:** Septiembre – diciembre de 2026
 
 ---
 
-# Tabla de Prácticas de la Materia
+## Tabla de prácticas de la materia
 
 | No. | Nombre | Descripción | Potenciador | Estatus |
-|-----|--------|-------------|-------------|---------|
-| 1. | Metodología de Evaluación de la Materia | Transcribir en libreta y comprender la metodología y fechas de evaluación de la asignatura | 42 | 💚 Concluida |
-| 2. | Conexiones Remotas para Bases de Datos SQL | Crear y administrar usuarios y privilegios para conexiones desde internet o redes locales | 60 | 💚 Concluida |
-| 3. | Manipulación de Datos en Conexiones Remotas a Bases de Datos Relacionales | Crear Procedimientos Almacenados, Funciones, Tablas Derivada, Importación de Datos en el Contexto de E-Commerce | 100 | 💚 Concluida |
+|---|---|---|---:|---|
+| 1 | Metodología de Evaluación de la Materia | Transcribir en libreta y comprender la metodología y fechas de evaluación de la asignatura. | 42 | 💚 Concluida |
+| 2 | Conexiones Remotas para Bases de Datos SQL | Crear y administrar usuarios y privilegios para conexiones desde internet o redes locales. | 60 | 💚 Concluida |
+| 3 | Manipulación de Datos en Conexiones Remotas a Bases de Datos Relacionales| Crear procedimientos almacenados, funciones, tablas derivadas e importar datos en el contexto de E-Commerce. | 100 | 💚 Concluida |
 
-
----
-
-# 📚 Diccionario de Datos Actualizado
-
-Se generó el diccionario de datos de la base de datos `db_test` mediante Archify, permitiendo visualizar la estructura de las tablas, atributos, tipos de datos, claves primarias, claves foráneas y relaciones existentes.
-
-El diccionario de datos se encuentra publicado en GitHub Pages para su consulta.
-
-### 🔗 Enlace al Diccionario de Datos y Modelo Entidad-Relación Extendido (EER)
-
-**[📖 Consultar Diccionario de Datos Actualizado y Modelo Entidad-Relación Extendido (EER)]( https://nataliamtz123.github.io/Practicas_BDN_240537/)**
-
-
+> El enlace de la práctica 3 apunta a este mismo README, sin crear carpetas adicionales.
 
 ---
 
-# Práctica 02 - Base de Datos `db_test`
+## 📋 Descripción general
 
-## 📋 Descripción General
-Esta práctica consiste en el diseño, implementación, conexión remota y respaldo de la base de datos relacional **`db_test`** utilizando MySQL (versión 8.0.36). El proyecto incluye la gestión de usuarios, pruebas de operaciones colaborativas en red y un sistema automatizado de registro de auditoría (*logs*) mediante disparadores (*triggers*) para el seguimiento de cambios.
+Esta práctica documenta el trabajo con la base de datos relacional **`db_test`**, utilizada en un escenario de **E-Commerce** con MySQL. Se incluyen respaldos SQL, scripts de administración de usuarios y privilegios, consultas de verificación, archivos CSV para carga de datos y una visualización del diccionario de datos y modelo entidad–relación extendido (EER).
+
+La documentación se organiza según los archivos presentes en esta carpeta. Los resultados de ejecución y los totales de registros deben comprobarse en la instancia de MySQL donde se restaure el respaldo.
+
+## 📁 Estructura del proyecto
+
+```text
+Practica03/
+├── backups/                         # Respaldos históricos de db_test (.sql)
+├── docs/
+│   └── index.html                   # Explorador/documentación web
+├── prompt/
+│   ├── Promp.txt
+│   └── Prompt_modelo_diccionario.txt
+├── queries/
+│   └── consultas_verificacion.sql
+├── scripts/
+│   └── remote_users_privileges_creation.sql
+├── seeds/
+│   ├── categorias_ecommerce_100.csv
+│   ├── categoria_productos_nat.csv
+│   └── productos_nuevos_10000_v2.csv
+└── readme.md
+```
+
+## 🗄️ Respaldos de la base de datos
+
+La carpeta **[backups](./backups/)** contiene respaldos históricos de la base de datos, desde `Respaldo_30092026.sql` hasta `Respaldo_2710.sql`, además de otros respaldos intermedios de octubre.
+
+Como referencia de documentación se revisó **[Respaldo_2710.sql](./backups/Respaldo_2710.sql)**, que contiene definiciones de **25 tablas** y **28 vistas**. Estos conteos corresponden al archivo revisado; no equivalen necesariamente al estado actual de una base restaurada.
+
+> **Precaución:** Restaurar un respaldo puede modificar o reemplazar objetos existentes. Revisar el archivo antes de ejecutarlo y realizar una copia de seguridad.
+
+## 🌐 Usuarios remotos, privilegios y roles
+
+El script **[remote_users_privileges_creation.sql](./scripts/remote_users_privileges_creation.sql)** contiene instrucciones para:
+
+- Crear usuarios de conexión remota y cuentas de aplicación (`app_web` y `app_movil`).
+- Definir roles como `superadmin`, `admin`, `seller`, `buyer`, `support` y `user_not_registered`.
+- Asignar permisos sobre tablas y procedimientos de `db_test`.
+- Establecer roles predeterminados para determinadas cuentas.
+
+**Seguridad:** el script incluye contraseñas de ejemplo y permisos amplios. No debe ejecutarse sin revisarlos, sustituir credenciales y aplicar el principio de mínimo privilegio.
+
+## ⚙️ Procedimientos almacenados y automatización
+
+Los materiales de la práctica incluyen verificaciones y ejemplos de uso de procedimientos almacenados:
+
+- `sp_register_user`: procedimiento de registro de usuarios referenciado en la asignación de permisos.
+- `sp_soft_delete_user`: procedimiento referenciado en los permisos del rol de soporte.
+- `sp_generar_usuarios_masivos`: procedimiento invocado en los escenarios de inserción masiva del archivo de consultas.
+
+Las definiciones concretas deben verificarse en el respaldo restaurado mediante `SHOW PROCEDURE STATUS` y `SHOW CREATE PROCEDURE`.
+
+## 🧪 Consultas y pruebas de verificación
+
+En **[consultas_verificacion.sql](./queries/consultas_verificacion.sql)** se incluyen consultas para:
+
+1. Listar las tablas y los triggers de `db_test`.
+2. Consultar productos por usuario y productos por categoría mediante vistas.
+3. Consultar los procedimientos almacenados disponibles.
+4. Revisar la trazabilidad de usuarios.
+5. Ejecutar tres escenarios de generación masiva de usuarios: **1,000**, **2,000** y **7,222** registros solicitados.
+6. Contabilizar usuarios y comprobar rangos de edad y proporciones de estados activos/inactivos.
+7. Contar triggers, vistas y vistas de trazabilidad.
+
+> Los tamaños de los escenarios son parámetros de prueba, no una afirmación de que todos los registros se insertaron correctamente. Ejecutar primero en un entorno de pruebas, ya que las llamadas pueden crear datos.
+
+### Consultas rápidas
+
+```sql
+USE db_test;
+
+-- Tablas base
+SELECT COUNT(*) AS total_tablas
+FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = 'db_test' AND TABLE_TYPE = 'BASE TABLE';
+
+-- Triggers
+SELECT COUNT(*) AS total_triggers
+FROM information_schema.TRIGGERS
+WHERE TRIGGER_SCHEMA = 'db_test';
+
+-- Vistas
+SELECT COUNT(*) AS total_vistas
+FROM information_schema.VIEWS
+WHERE TABLE_SCHEMA = 'db_test';
+
+-- Procedimientos
+SHOW PROCEDURE STATUS WHERE Db = 'db_test';
+```
+
+## 📦 Datos de prueba para E-Commerce
+
+La carpeta **[seeds](./seeds/)** contiene los archivos CSV:
+
+| Archivo | Propósito |
+|---|---|
+| [categorias_ecommerce_100.csv](./seeds/categorias_ecommerce_100.csv) | Datos de categorías de E-Commerce. |
+| [categoria_productos_nat.csv](./seeds/categoria_productos_nat.csv) | Datos relacionados con categorías y productos. |
+| [productos_nuevos_10000_v2.csv](./seeds/productos_nuevos_10000_v2.csv) | Datos de productos para pruebas de carga. |
+
+Antes de importar los CSV, comprobar nombres de columnas, codificación, tipos de datos, claves y restricciones de las tablas de destino.
+
+## 📚 Diccionario de datos y modelo EER
+
+Se incluye un explorador web en **[docs/index.html](./docs/index.html)** y los archivos de instrucciones usados para preparar la documentación en **[prompt](./prompt/)**.
+
+**[📖 Consultar diccionario de datos y modelo EER en GitHub Pages](https://nataliamtz123.github.io/Practicas_BDN_240537/)**
+
+> El enlace corresponde al sitio GitHub Pages del repositorio. Para publicar específicamente `Practica03/docs/index.html`, es necesario comprobar la configuración de publicación y la ruta servida por GitHub Pages.
+
+## 🔍 Trazabilidad y auditoría
+
+El archivo de verificación consulta vistas como `vw_trazabilidad_usuarios` y `vw_trazabilidad_productos`, además de contar triggers a través de `information_schema.TRIGGERS`. Estas consultas permiten revisar la trazabilidad disponible después de restaurar y configurar la base de datos.
+
+## ✅ Evidencias y validación
+
+Para documentar los resultados de la práctica se recomienda conservar capturas o salidas de las consultas de conteo, procedimientos, vistas, triggers, pruebas remotas e importación de datos. No se incluyen resultados de ejecución inventados: deben obtenerse directamente de MySQL.
 
 ---
 
-## 🗄️ Estructura de la Base de Datos
-
-La base de datos contiene las siguientes tablas principales:
-
-### 1. `tb_users`
-Almacena la información de los usuarios registrados en el sistema.
-
-* **`ID`**: Identificador único (Clave primaria, autoincrementable).
-* **`email`**: Correo electrónico del usuario (Único, obligatorio).
-* **`nickname`**: Nombre de usuario o apodo (Único, obligatorio).
-* **`password`**: Contraseña cifrada del usuario.
-* **`creation_date`**: Fecha y hora de creación del registro.
-* **`last_update`**: Fecha y hora de la última modificación.
-* **`last_login`**: Fecha y hora del último acceso.
-
-### 2. `tb_logs`
-Almacena el historial de auditoría de las acciones realizadas sobre la tabla de usuarios.
-
-* **`ID`**: Identificador único del registro de log.
-* **`table_name`**: Nombre de la tabla afectada (`tb_users`).
-* **`operation`**: Tipo de operación realizada (`INSERT`, `UPDATE`, `DELETE`).
-* **`db_users`**: Usuario de la base de datos y host desde el que se ejecutó la acción.
-* **`description`**: Detalle descriptivo del cambio o evento registrado.
-* **`operation_date`**: Marca de tiempo exacta de cuándo ocurrió el evento.
-* **`operation_status`**: Estado de la operación.
-
----
-
-## 🌐 Conexión Colaborativa y Pruebas Remotas
-Durante el desarrollo de la práctica, se realizaron conexiones hacia instancias de bases de datos de compañeros de equipo mediante comandos y configuración de red para simular un entorno distribuido:
-
-* **Conexión remota**: Se establecieron enlaces mediante IP/host para acceder de manera concurrente al servidor de base de datos de la estación de trabajo de un compañero.
-* **Ejecución de operaciones CRUD**: Se realizaron pruebas de inserción (`INSERT`), actualización (`UPDATE`) y eliminación (`DELETE`) de registros de manera remota.
-* **Trazabilidad en Logs**: Gracias a los registros almacenados en `tb_logs`, se pudo comprobar qué usuario y desde qué equipo (*host*) se efectuaron modificaciones específicas (por ejemplo, cambios de correos electrónicos y bajas de registros).
-
----
-
-## ⚙️ Automatización (Triggers)
-Para garantizar la integridad y trazabilidad de las acciones colaborativas, se implementaron tres triggers en la tabla `tb_users`:
-
-1. **`trg_users_after_insert`**: Registra automáticamente en `tb_logs` cada vez que se crea un nuevo usuario.
-2. **`trg_users_after_update`**: Detecta cambios específicos en campos como `email` o `nickname` y guarda los valores anteriores y nuevos en el log.
-3. **`trg_users_after_delete`**: Almacena un registro de auditoría cuando un usuario es eliminado del sistema.
+**Repositorio:** [Practicas_BDN_240537](https://github.com/NataliaMtz123/Practicas_BDN_240537) · **Rama:** `Practica03` · **Carpeta:** `Practica03`
