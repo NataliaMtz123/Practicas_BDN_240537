@@ -10,3 +10,7 @@ Periodo: Septiembre - Diciembre 2026
 |1.|Practica 02|Conexión Remota en MYSQL|42|💚Concluida|
 |2.|Conexiones Remotas para Bases de Datos SQL 1| Crear y administrar usuarios y privilegios para conexiones desde internet o redes locales |60|💚Concluida|
 |3.|Práctica 03|Manipulacion de datos, Relaciones, Procedimientos, Funciones y Eventos en Conexionaes Remota|50|💚Concluida|
+
+## Práctica 04 – Procesos de Simulación de Compra
+
+[Atlas de la Base de Datos db_test](Practica04/docs/ATLAS_db_test.html)
