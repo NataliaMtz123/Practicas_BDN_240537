@@ -5,7 +5,6 @@ Periodo: Septiembre - Diciembre 2026
 
 ---
 
-<<<<<<< HEAD
 
 # Tabla de Prácticas de la Materia
 
