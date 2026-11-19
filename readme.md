@@ -5,6 +5,7 @@ Periodo: Septiembre - Diciembre 2026
 
 ---
 
+<<<<<<< HEAD
 
 # Tabla de Prácticas de la Materia
 
@@ -14,3 +15,5 @@ Periodo: Septiembre - Diciembre 2026
 | 2. | **[Conexiones Remotas para Bases de Datos SQL](Practica02/readme.md)** | Crear y administrar usuarios y privilegios para conexiones desde internet o redes locales | 60 | 💚 Concluida |
 | 3. | **[Manipulación de Datos en Conexiones Remotas a Bases de Datos Relacionales](Practica03/readme.md)** | Crear Procedimientos Almacenados, Funciones, Tablas Derivada, Importación de Datos en el Contexto de E-Commerce | 100 | 💚 Concluida |
 | 4. | **[Simulación de una compra](Practica04/readme.md)** | Simulacion de una compra, creacion de tarjetas y envios, cancelaciones y devoluciones | 100 | 💚 Concluida |
+
+
