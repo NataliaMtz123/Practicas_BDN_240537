@@ -5,7 +5,6 @@ Periodo: Septiembre - Diciembre 2026
 
 ---
 
-
 # Tabla de Prácticas de la Materia
 
 | No. | Nombre | Descripción | Potenciador | Estatus |
